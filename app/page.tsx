@@ -16,9 +16,6 @@ import {
   ShieldCheck,
   Sparkles,
   MessageCircle,
-  PlayCircle,
-  ListChecks,
-  Clock,
   FileDown,
   X,
   TrendingUp,
@@ -149,15 +146,6 @@ const compactCerts: CompactCert[] = [
   { title: "Six Sigma Yellow Belt", file: FILES.certSixSigma },
 ];
 
-type Course = { title: string; file: string; tag?: string; duration?: string };
-const quickCourses: Course[] = [
-  { title: "Impacto Social Intensivo", file: "/cursos/impacto-social-intensivo.pdf", tag: "Prático", duration: "1h" },
-  { title: "Gestão de Projetos Culturais", file: "/cursos/gestao-projetos-culturais.pdf", tag: "Toolkit", duration: "1h" },
-  { title: "Captação & Incentivos", file: "/cursos/captacao-e-incentivos.pdf", tag: "Leis + Editais", duration: "45min" },
-  { title: "MROSC na Prática", file: "/cursos/mrosc-na-pratica.pdf", tag: "Compliance", duration: "40min" },
-  { title: "OKRs para o Terceiro Setor", file: "/cursos/okrs-terceiro-setor.pdf", tag: "Gestão", duration: "30min" },
-];
-
 const TESTIMONIALS = [
   {
     name: "Aline Pascale",
@@ -200,8 +188,7 @@ const NAV_SECTIONS = [
   { id: "parceiros", label: "Parceiros" },
   { id: "premiacoes", label: "Minhas premiações" },
   { id: "certificacoes", label: "Meus certificados" },
-  { id: "video", label: "Vídeo" },
-  { id: "cursos", label: "Cursos para você" },
+  // removidos: vídeo e cursos
   { id: "depoimentos", label: "Depoimentos" },
   { id: "contato", label: "Contato" },
 ] as const;
@@ -238,7 +225,6 @@ export default function Page() {
       setCopied(true);
       setTimeout(() => setCopied(false), 1800);
     } catch {
-      // fallback
       window.location.href = `mailto:${email}`;
     }
   };
@@ -516,72 +502,6 @@ export default function Page() {
                       href={c.file}
                       download
                       className="ml-2 inline-flex items-center gap-2 rounded-lg border px-3 py-2 text-sm bg-white/80 dark:bg-slate-900/60 dark:border-white/10 hover:bg-white dark:hover:bg-slate-900 transition whitespace-nowrap"
-                    >
-                      Baixar <Download className="h-4 w-4" aria-hidden />
-                    </a>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* VÍDEO ============================================================= */}
-      <section id="video" className="mx-auto max-w-6xl px-6 py-10">
-        <Header title="Vídeo de Impacto" subtitle="Um recorte das transformações que movem nosso trabalho." />
-        <motion.div {...fade(0)} className="mt-6">
-          <div
-            className="relative w-full overflow-hidden rounded-2xl shadow-xl bg-black ring-1 ring-white/60 dark:ring-white/10"
-            style={{ paddingTop: "56.25%" }}
-          >
-            <video className="absolute inset-0 h-full w-full" controls poster="/videos/poster.jpg" preload="metadata">
-              <source src="/videos/impacto.mp4" type="video/mp4" />
-              Seu navegador não suporta vídeo HTML5.
-            </video>
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent" />
-            <div className="pointer-events-none absolute left-4 top-4 flex items-center gap-2 text-white/90">
-              <PlayCircle className="h-5 w-5" aria-hidden />
-              <span className="text-sm font-medium">Assista: 2min</span>
-            </div>
-          </div>
-        </motion.div>
-      </section>
-
-      {/* CURSOS ============================================================ */}
-      <section id="cursos" className="mx-auto max-w-6xl px-6 py-8">
-        <Header
-          title="Cursos para você"
-          subtitle="Conteúdos práticos para acelerar resultados no impacto social, cultura e gestão."
-        />
-        <div className="mt-6 grid gap-4 md:grid-cols-2">
-          {quickCourses.map((c, i) => (
-            <motion.div key={c.title} {...fade(i)}>
-              <Card className="bg-white/75 dark:bg-slate-900/60 backdrop-blur-md border-white/60 dark:border-white/10 hover:-translate-y-0.5 hover:shadow-md transition">
-                <CardContent className="p-4">
-                  <div className="flex items-start gap-4">
-                    <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-emerald-500/90 to-cyan-500/90 text-white flex items-center justify-center shadow">
-                      <ListChecks className="h-6 w-6" aria-hidden />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h3 className="font-semibold leading-snug">{c.title}</h3>
-                      <div className="mt-1 flex items-center gap-3 text-sm text-slate-600 dark:text-slate-300">
-                        {c.tag && (
-                          <span className="inline-flex items-center rounded-full border px-2 py-0.5 text-xs bg-white dark:bg-slate-900 dark:border-white/10">
-                            {c.tag}
-                          </span>
-                        )}
-                        {c.duration && (
-                          <span className="inline-flex items-center gap-1">
-                            <Clock className="h-4 w-4" aria-hidden /> {c.duration}
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                    <a
-                      href={c.file}
-                      download
-                      className="shrink-0 inline-flex items-center gap-2 rounded-lg border px-3 py-2 text-sm bg-white/90 dark:bg-slate-900/60 dark:border-white/10 hover:bg-white dark:hover:bg-slate-900 transition"
                     >
                       Baixar <Download className="h-4 w-4" aria-hidden />
                     </a>
